@@ -111,7 +111,7 @@ namespace Praktikum_23_Mei_2022
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            sqlQuery = $"UPDATE player SET player_id = '{TboxPlayerID.Text}', player_name = '{ TboxPlayerName.Text }', birthdate = '{ DateTimeBirthdate.Value.ToString("yyyy-MM-dd") }', nationality_id = '{ CboxNationality.SelectedValue }', team_id= '{  CboxTeam.SelectedValue }' WHERE player_id = '{TboxPlayerID.Text}'";
+            sqlQuery = $"UPDATE player SET player_id = '{TboxPlayerID.Text}', player_name = '{ TboxPlayerName.Text }', birthdate = '{ DateTimeBirthdate.Value.ToString("yyyy-MM-dd") }', nationality_id = '{ CboxNationality.SelectedValue }', team_id= '{  CboxTeam.SelectedValue }', team_number = '{NumUpDown.Value}' WHERE player_id = '{TboxPlayerID.Text}'";
             sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
             sqlConnect.Open();
             sqlCommand.ExecuteNonQuery();
@@ -121,7 +121,8 @@ namespace Praktikum_23_Mei_2022
             sqlCommand = new MySqlCommand(sqlQuery, sqlConnect);
             sqlAdapter = new MySqlDataAdapter(sqlCommand);
             sqlAdapter.Fill(Player);
-            DataPlayer(PosisiSekarang);           
+            DataPlayer(PosisiSekarang);
+            MessageBox.Show("Data Sudah Terupdate");
         }
     }
 }
